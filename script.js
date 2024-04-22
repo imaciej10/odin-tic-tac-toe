@@ -8,6 +8,8 @@ const TicTacToeGame = (function () {
   let computerPoints = 0;
   let computerChoice;
   let computerIndex;
+  let winner;
+  let pattern;
 
   const resetPoints = function () {
     playerPoints = 0;
@@ -16,6 +18,18 @@ const TicTacToeGame = (function () {
   };
   const resetBoard = function () {
     return (board = [...initialBoard]);
+  };
+
+  const getWinner = function () {
+    return winner;
+  };
+
+  const resetWinner = function () {
+    return (winner = "");
+  };
+
+  const getPattern = function () {
+    return pattern;
   };
 
   const markSelected = function (player, index) {
@@ -27,7 +41,6 @@ const TicTacToeGame = (function () {
       board.splice(computerIndex, 1, computerMarker);
       isPlayerMove = true;
     }
-    console.log(board);
     return board, isPlayerMove, computerIndex + 1;
   };
 
@@ -77,19 +90,21 @@ const TicTacToeGame = (function () {
     for (const combination of winningCombinations) {
       const markers = combination.map((index) => board[index - 1]);
       if (markers.every((marker) => marker === playerMarker)) {
-        console.log("Player won!");
         playerPoints += 1;
+        winner = "player";
+        pattern = combination;
         return [true, playerPoints];
       } else if (markers.every((marker) => marker === computerMarker)) {
-        console.log("Computer won!");
         computerPoints += 1;
+        winner = "computer";
+        pattern = combination;
         return [true, computerPoints];
       }
     }
     if (
       board.every((field) => field === playerMarker || field === computerMarker)
     ) {
-      return true;
+      return true, winner, pattern;
     }
   };
 
@@ -109,6 +124,9 @@ const TicTacToeGame = (function () {
     isValidMove,
     isPlayerMove,
     resetPoints,
+    getWinner,
+    getPattern,
+    resetWinner,
   };
 })();
 
@@ -127,10 +145,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
     fields.forEach((field) => (field.textContent = ""));
   }
 
+  function highlightCombination(winningField, winner) {
+    if (winner === "player") {
+      winningField.classList.add("won");
+    } else {
+      winningField.classList.add("lost");
+    }
+  }
+
   function handleRoundEnd() {
     playerScore.textContent = TicTacToeGame.getPlayerPoints();
     computerScore.textContent = TicTacToeGame.getComputerPoints();
-    return (TicTacToeGame.isPlayerMove = false);
+
+    let winningCombination = TicTacToeGame.getPattern();
+    let winner = TicTacToeGame.getWinner();
+
+    if (winner === "player" || winner === "computer") {
+      winningCombination.forEach((index) => {
+        let winningField = document.getElementById(`${index}`);
+        highlightCombination(winningField, winner);
+        TicTacToeGame.resetWinner();
+        return (TicTacToeGame.isPlayerMove = false);
+      });
+    }
   }
 
   function updateBoard(previousPlayer, previousComputer, player, computer) {
@@ -177,13 +214,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   newGameButton.addEventListener("click", function () {
     clearBoard();
     TicTacToeGame.board = TicTacToeGame.resetBoard();
+    fields.forEach((field) => field.classList.remove("won", "lost"));
     TicTacToeGame.isPlayerMove = true;
   });
 
   resetScoreBtn.addEventListener("click", () => {
     TicTacToeGame.resetPoints();
-    playerScore.textContent = "";
-    computerScore.textContent = "";
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
   });
 
   form.addEventListener("submit", function (event) {

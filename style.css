@@ -1,4 +1,14 @@
 @import url(https://db.onlinewebfonts.com/c/c456f7a4385268846d64eea06d56d928?family=chalkboard);
+
+@font-face {
+  font-family: "myFont";
+  src: url(font/enhanced_led_board-7.ttf), Arial, Verdana, "sans-serif";
+}
+
+@font-face {
+  font-family: "Norse";
+  src: url(font/Bison-Bold\(PersonalUse\).ttf), Arial, Verdana, "sans-serif";
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +17,11 @@
 
 :root {
   font-size: 16px;
+  --buttonColor: purple;
+  --headerColor: rgb(128, 128, 128, 0.7);
+  --footerColor: rgb(128, 128, 128, 0.7);
+  --sidebarColor: rgb(128, 128, 128, 0.1);
+  --mainColor: black;
 }
 
 body {
@@ -21,18 +36,21 @@ button:hover {
 }
 
 .header {
-  background-color: yellow;
+  background-color: var(--headerColor);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: overline;
-  font-size: 4.5rem;
+  font-size: 6.5rem;
+  font-family: "Norse";
+  word-spacing: 0.5ch;
+  user-select: none;
 }
 
 .main {
-  background-color: black;
+  background-color: var(--mainColor);
   display: grid;
   grid-template: 1fr 1fr / repeat(4, 1fr);
+  padding: 2rem;
 }
 
 .game-board {
@@ -54,20 +72,33 @@ button:hover {
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  font-family: chalkboard;
+  font-family: "chalkboard";
+}
+
+.won {
+  color: green;
+}
+
+.lost {
+  color: red;
 }
 
 .sidebar {
   padding: 1rem;
+  font-family: "myFont";
   grid-area: 1 / 4 / 3 / 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  background-color: var(--sidebarColor);
+  border-radius: 0.5rem;
 }
 
 .score-board {
   display: grid;
+
+  user-select: none;
   padding: 1rem;
   gap: 1rem;
   width: 100%;
@@ -95,7 +126,7 @@ button:hover {
 }
 .playerScore {
   grid-area: 2 / 2 / 3 / 3;
-  justify-self: end;
+  justify-self: center;
 }
 .computer {
   grid-area: 3 / 1 / 4 / 2;
@@ -103,11 +134,12 @@ button:hover {
 
 .computerScore {
   grid-area: 3 / 2 / 4 / 3;
-  justify-self: end;
+  justify-self: center;
 }
 
 .footer {
-  background-color: gray;
+  background-color: var(--footerColor);
+  font-family: "Norse";
   display: flex;
   font-size: 1.5rem;
   align-items: center;
@@ -121,19 +153,22 @@ button:hover {
 label {
   color: white;
   font-size: 1.5rem;
+  user-select: none;
 }
 
 input {
   width: 30%;
   padding: 0.5rem 0.6rem;
-  font-size: 1.1rem;
+  font-size: 2.5rem;
   text-align: center;
+  background-color: gray;
+  color: white;
 }
 
 button {
   width: 15ch;
   color: white;
-  background-color: blue;
+  background-color: var(--buttonColor);
   border-radius: 0.7rem;
   border: 0;
   font-size: 1.2rem;
@@ -160,6 +195,10 @@ form {
   align-items: center;
 }
 
+label[for="player"],
+label[for="computer"] {
+  line-height: 1.8ch;
+}
 label[for="player"] {
   grid-area: 1 / 1 / 2 / 2;
 }
