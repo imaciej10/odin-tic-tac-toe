@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="header">Tic Tac Toe</div>
+    <div class="main">
+      <div class="game-board">
+        <div class="field first-row first-column" id="1"></div>
+        <div class="field first-row second-column" id="2"></div>
+        <div class="field first-row third-column" id="3"></div>
+        <div class="field second-row first-column" id="4"></div>
+        <div class="field second-row second-column" id="5"></div>
+        <div class="field second-row third-column" id="6"></div>
+        <div class="field third-row first-column" id="7"></div>
+        <div class="field third-row second-column" id="8"></div>
+        <div class="field third-row third-column" id="9"></div>
+      </div>
+      <div class="sidebar">
+        <div class="score-board">
+          <div class="title">Score</div>
+          <div class="player">Player:</div>
+          <div class="playerScore"></div>
+          <div class="computer">Computer:</div>
+          <div class="computerScore"></div>
+        </div>
+        <button class="reset">Reset Game</button>
+        <button class="resetScore">Reset Score</button>
+        <div class="form-container">
+          <form action="post" class="newSymbol">
+            <label for="player">Player Marker</label>
+            <input
+              type="text"
+              id="player"
+              minlength="1"
+              maxlength="1"
+              placeholder="@"
+            />
+            <label for="computer">Computer Marker</label>
+            <input
+              type="text"
+              id="computer"
+              minlength="1"
+              maxlength="1"
+              placeholder="!"
+            />
+            <button class="submit">Change</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="credits">Made for The Odin Project</div>
+    </div>
+  </body>
+</html>

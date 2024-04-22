@@ -1,0 +1,200 @@
+@import url(https://db.onlinewebfonts.com/c/c456f7a4385268846d64eea06d56d928?family=chalkboard);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+button:hover {
+  transform: scale(0.95);
+}
+
+.header {
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: overline;
+  font-size: 4.5rem;
+}
+
+.main {
+  background-color: black;
+  display: grid;
+  grid-template: 1fr 1fr / repeat(4, 1fr);
+}
+
+.game-board {
+  padding: 2.5rem;
+  border: 1px solid white;
+  grid-area: 1 / 2 / 3 / 4;
+  display: grid;
+  grid-template: repeat(3, 120px) / repeat(3, 120px);
+  align-self: center;
+  justify-self: center;
+  outline: 1px white solid;
+  outline-offset: -0.8rem;
+}
+
+.field {
+  border: 1px white solid;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: chalkboard;
+}
+
+.sidebar {
+  padding: 1rem;
+  grid-area: 1 / 4 / 3 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.score-board {
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+  align-items: space-between;
+}
+
+.sidebar .title {
+  grid-area: 1 / 1 / 2 / 3;
+  justify-self: center;
+  font-size: 2rem;
+}
+.player {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.player,
+.computer {
+  font-size: 1.5rem;
+}
+
+.playerScore,
+.computerScore {
+  font-size: 1.5rem;
+}
+.playerScore {
+  grid-area: 2 / 2 / 3 / 3;
+  justify-self: end;
+}
+.computer {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.computerScore {
+  grid-area: 3 / 2 / 4 / 3;
+  justify-self: end;
+}
+
+.footer {
+  background-color: gray;
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset {
+  justify-self: center;
+}
+
+label {
+  color: white;
+  font-size: 1.5rem;
+}
+
+input {
+  width: 30%;
+  padding: 0.5rem 0.6rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+button {
+  width: 15ch;
+  color: white;
+  background-color: blue;
+  border-radius: 0.7rem;
+  border: 0;
+  font-size: 1.2rem;
+  padding: 0.7rem 1rem;
+}
+
+.score-board {
+  color: white;
+  flex: 1;
+}
+
+.form-container {
+  flex: 2;
+  align-items: center;
+  width: 100%;
+}
+
+form {
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+  justify-items: start;
+  align-items: center;
+}
+
+label[for="player"] {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+label[for="computer"] {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+input[id="player"] {
+  grid-area: 1 / 2 / 2 / 3;
+  justify-self: center;
+}
+
+input[id="computer"] {
+  grid-area: 2 / 2 / 3 / 3;
+  justify-self: center;
+}
+
+button.submit {
+  grid-area: 3/ 1 / 4 / 3;
+  justify-self: center;
+}
+
+.third-row {
+  border-bottom: none;
+}
+
+.first-row {
+  border-top: none;
+}
+
+.first-column {
+  border-left: none;
+}
+
+.third-column {
+  border-right: none;
+}
